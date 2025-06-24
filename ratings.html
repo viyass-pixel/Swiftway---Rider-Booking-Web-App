@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rider Booking App - User Reviews & Owner Responses</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .star-rating {
+      display: flex;
+      cursor: pointer;
+    }
+    .star-rating input {
+      display: none;
+    }
+    .star-rating label {
+      font-size: 30px;
+      color: gray;
+      margin-right: 5px;
+    }
+    .star-rating input:checked ~ label {
+      color: gold;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold text-indigo-700 mb-4">User Reviews & Owner Responses</h1>
+    <p class="text-gray-600 mb-8">Check user feedback and responses from our team.</p>
+
+    <!-- Review Form -->
+    <div class="review-form bg-white shadow-md rounded-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold text-indigo-700 mb-4">Submit Your Review</h2>
+
+      <!-- Star Rating System -->
+      <div class="star-rating mb-4">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">★</label>
+      </div>
+
+      <!-- Textarea for Review -->
+      <textarea id="review-text" placeholder="Write your review here..." class="w-full p-4 border border-gray-300 rounded-md mb-4" rows="4"></textarea>
+      
+      <button id="submit-review" class="bg-indigo-700 text-white py-2 px-6 rounded-lg">Submit Review</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('submit-review').addEventListener('click', function() {
+      const rating = document.querySelector('input[name="rating"]:checked');
+      const reviewText = document.getElementById('review-text').value;
+
+      if (rating && reviewText) {
+        const ratingValue = rating.value;
+        const userReview = reviewText;
+
+        // Create a new review element
+        const reviewItem = document.createElement('div');
+        reviewItem.classList.add('review-item', 'bg-white', 'shadow-md', 'rounded-lg', 'p-6', 'mb-4');
+
+        // Add user review details
+        reviewItem.innerHTML = `
+          <h2 class="text-xl font-semibold">New User</h2>
+          <p class="rating">Rating: ${'⭐'.repeat(ratingValue)}</p>
+          <p class="review-text">"${userReview}"</p>
+          <p class="date">Reviewed on: ${new Date().toLocaleDateString()}</p>
+          <div class="owner-response mt-4">
+            <h3 class="font-semibold">Owner's Response</h3>
+            <p>"Thank you for your review! We appreciate your feedback and look forward to serving you again!"</p>
+            <p class="response-date text-sm text-gray-500">Responded on: ${new Date().toLocaleDateString()}</p>
+          </div>
+        `;
+
+        // Append the new review item to the review container
+        document.getElementById('review-container').appendChild(reviewItem);
+
+        // Clear the form
+        document.querySelector('input[name="rating"]:checked').checked = false;
+        document.getElementById('review-text').value = '';
+      } else {
+        alert('Please provide a rating and review text.');
+      }
+    });
+  </script>
+
+</body>
+</html>
+
