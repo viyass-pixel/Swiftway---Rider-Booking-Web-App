@@ -1,4 +1,4 @@
-# Swiftway---Rider-Booking-Web-App
+# SWIFTYWAY---RIDER-BOOKING-WEB-APP
 # 🚖 Swiftway – Cloud-Native Rider Booking Application
 
 **Swiftway** is a cloud-native rider booking application built with AWS services and modern web technologies. This app allows users to seamlessly book rides, manage their profiles, and access ride details in a secure and scalable environment.
